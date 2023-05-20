@@ -50,7 +50,7 @@ public class Hangman {
                 " +---+\n" +
                         " |   |\n" +
                         " O   |\n" +
-                        "/|\\  |\n" + //if you were wondering, the only way to print '\' is with a trailing escape character, which also happens to be '\'
+                        "/|\\  |\n" + 
                         "     |\n" +
                         "     |\n" +
                         " =========\n",
@@ -77,28 +77,28 @@ public class Hangman {
                 Scanner scanner = new Scanner(System.in);
                 String randomWord = randomWord(words);
 
-                char[] placeHolders = new char[randomWord.length()]; //създаваме чар масив и като нейна стойност слагаме дъльината на избраната от функцията шано дума
-                for (int i = 0; i < placeHolders.length; i++) {      //правим цикъл който да обхожда масива и да задава по дължината на думата стойност на знаците '_'
-                        placeHolders[i] = '_';                       //реално масива разделя стринга от думи на отделни знаци, за да могат да бъдат манипулирани
-                }//есенчъли разделя думата на букви
+                char[] placeHolders = new char[randomWord.length()]; 
+                for (int i = 0; i < placeHolders.length; i++) {      
+                        placeHolders[i] = '_';                       
+                }
 
-                int misses = 0;// начална стойност на сгрешените букви
+                int misses = 0;
 
-                char[] missedGuess = new char[6]; // масив от грешките
+                char[] missedGuess = new char[6]; 
 
                 while(misses < 6){
                         System.out.println(gallows[misses]);
 
                         System.out.println("Word: " );
-                        printPlaceHolders(placeHolders);//това принтира избраната дума скрита
+                        printPlaceHolders(placeHolders);
                         System.out.println("\n");
 
                         System.out.println("Misses: ");
-                        printMisses(missedGuess);//това принтира възможните опити за грешки
+                        printMisses(missedGuess);
                         System.out.println("\n\n");
 
                         System.out.println("Guess: ");
-                        char guess = scanner.nextLine().charAt(0);// това приема и позвилява на играча да въвежда знаци
+                        char guess = scanner.nextLine().charAt(0);
                         System.out.println("\n");
 
                         if(checkGuess(randomWord, guess)){
@@ -108,29 +108,29 @@ public class Hangman {
                                 misses++;
                         }
                         if(Arrays.equals(placeHolders, randomWord.toCharArray())){
-                                System.out.println(gallows[misses]);//тази проверка чеква дали скритата дума е равна на знаците който си въвел и принтира колко грешки си направил докато
-                                System.out.println("\nWord:  ");//познаеш и принтира и съответно отговарящото на броя грешки бесило и принтира думата
+                                System.out.println(gallows[misses]);
+                                System.out.println("\nWord:  ");
                                 printPlaceHolders(placeHolders);
                                 System.out.println("Good Work!");
                                 break;
                         }
                 }
                 if (misses == 6){
-                        System.out.println(gallows[6]); //тази проверка проверява дали грешките са 6 и ако са 6 принтира финалното бесило, РИП и разкрива думата
+                        System.out.println(gallows[6]); 
                         System.out.println("\nRIP!");
                         System.out.println("\nThe word was: '" + randomWord + "'");
                 }
                 scanner.close();
         }
         public static String randomWord(String[] words){
-                int numWords = words.length;  //пррооменлива която е равна на дължината на на думата
-                double randomDouble = Math.random();// общо взето тази функция избира дума на шано
+                int numWords = words.length;  
+                double randomDouble = Math.random();
                 int randomIndex = (int) (randomDouble * numWords);
                 return words[randomIndex]; 
         }
         public static boolean checkGuess(String word, char guess){
 
-                for (int i = 0; i < word.length(); i++) {// цикъл който обхожда думата и сравнява със зададената от играча стойност и връща true или false
+                for (int i = 0; i < word.length(); i++) {
                         if(word.charAt(i) == guess){
                                 return true;
                         }
@@ -140,7 +140,7 @@ public class Hangman {
                 return false;
         }
         public static void updatePlaceHolders(String word, char[] placeHolders, char guess){
-                for (int i = 0; i < word.length(); i++) {// тази функция обновява долните черти
+                for (int i = 0; i < word.length(); i++) {
                         if(word.charAt(i) == guess){
                                 placeHolders[i] = guess;
                         }
@@ -148,13 +148,13 @@ public class Hangman {
         }
         public static void printPlaceHolders(char[] placeHolders){
                 for (int i = 0; i < placeHolders.length; i++) {
-                        System.out.print(" " + placeHolders[i]);//тази функция принтира верните предположения на правилните места
+                        System.out.print(" " + placeHolders[i]);
                 }
                 System.out.println("\n");
         }
         public static void printMisses(char[] misses){
                 for (int i = 0; i < misses.length; i++) {
-                        System.out.print(misses[i]);//тази функция принтира грешките
+                        System.out.print(misses[i]);
                 }
 
         }
